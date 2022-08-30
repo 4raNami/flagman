@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/map.js"></script>
+  </head>
+  <header>
+    <a href="./index.html"><img width="200" height="84" src="img/logo.svg"></a>
+    <nav>
+      <ol class="navi-list">
+        <li><a href="#">portfolio予定地</a></li>
+        <li>何かの予定地</li>
+        <li>何かの予定地２</li>
+        <li>何かの予定地３</li>
+      </ol>
+    </nav>
+  </header>
+  <div class="flex-container">
+    <aside>
+      <ol>
+        <li><a href="map_1dot.html">mapping 制作(小さい版)</a></li>
+        <li><a href="map_2dot.html">mapping 制作(大きい版)</a></li>
+        <li><a href="map2.html">flagman mapping</a></li>
+        <li><a href="map3.html">太鼓 mapping</a></li>
+        <li><a href="map4.html">太鼓判定 mapping</a></li>
+        <li><a href="map5.html">timing point setting</a></li>
+        <li><a href="map6.html">mapping 判定</a></li>
+        <li><a href="map.html">mapping 完成統合版 ver1.0</a></li>
+      </ol>
+    </aside>
+    <main>
+      <h1>osu! mania 作譜ページ</h1>
+      <img width="800" height="450" class="image-edge" src="img/map2.png" alt="maniaのStoryBoard(judge有)画像">
+      <div class="description">
+        <ol>
+          <li>Osu!mania の<b>[HitObject]</b>の中身を左のテキストボックスにすべてコピペしてください</li>
+          <li>作成ボタンを押すと右のテキストボックスに.osbのコードが出てくるので、<b>[Overlay]</b>にコピペしてください</li>
+          <li>素材を.osuと同じdirectryに入れることで動作するはずです</li>
+        </ol>
+      </div>
+      <div class="cell">
+        <p class="cell" style="padding-left: 10px"> OD = 
+          <select id="OD">
+            <option value="0">0
+            <option value="1">1
+            <option value="2">2
+            <option value="3">3
+            <option value="4">4
+            <option value="5">5
+            <option value="6">6
+            <option value="7">7
+            <option value="8" selected>8
+            <option value="9">9
+            <option value="10">10 
+          </select>
+          || scale=
+          <select id="scale">
+            <option value="8">1
+            <option value="10">1.25
+            <option value="12">1.5
+            <option value="14">1.75
+            <option value="16">2
+          </select>
+        </p>
+        <p class="cell">
+          <label>
+            <input type="checkbox" id="background" value="1" checked>背景を追加する
+          </label>
+          <label>
+            || <input type="checkbox" id="bar" value="1" checked>判定バーを追加する
+          </label>
+        </p>
+        <p class="cell">
+          speed= x<input size="1" type="text" value="4" id="speed">
+          || 判定位置 x = <input size="2" type="text" value="320" id="x_judge">  y = <input size="2" type="text" value="240" id="y_judge"><br>
+          判定サイズ size = <input size="2" type="text" value="0.75" id="size_judge">
+        </p>
+        <p class="cell">
+          last Offset = 
+          <input size="6" type="text" id="offset" value="133466">
+        </p>
+      </div>
+      <textarea id="input" style="width:200px;height:auto"></textarea>
+      <textarea id="output" style="width:360px;height:auto"></textarea><br>
+      <input type="button" onclick="MAP()" value="譜面作成">
+      <input type="button" onclick="TIMING()" value="Timing Point作成">
+      <input type="button" onclick="JUDGE()" value="判定作成">
+      <input type="button" onclick="SAMPLE()" value="Sample Set 挿入">
+    </main>
+  </div>
+</html>

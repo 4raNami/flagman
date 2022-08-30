@@ -1,0 +1,107 @@
+html{
+  position: absolute;
+  min-width: 98%;
+}
+body{
+  background-color:azure;
+  min-width: 98%;
+}
+header{
+  display: flex;
+  align-items: center;
+  background-color: cadetblue;
+}
+header>img{
+  flex-basis: 10%;
+}
+header>nav{
+  flex-basis: 90%;
+}
+nav>ol{
+  display: flex;
+}
+.navi-list{
+  justify-content: space-between;
+}
+li{
+  margin:0 auto;
+}
+div.flex-container{
+  display: flex;
+  justify-content: space-around;
+}
+aside{
+  flex-basis: 13%;
+  min-width: 200px;
+  background-color: blanchedalmond;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+main{
+  flex-basis: 85%;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+aside>ul,aside>ol {
+  padding: 0;
+  position: relative;
+}
+aside> ol li,aside> ul li {
+  line-height: 1.5;
+  padding: 0.5em 0.5em 0.5em 1.7em;
+  list-style-type: none!important;
+  background: -webkit-linear-gradient(top, whitesmoke 0%, whitesmoke 100%);/*グラデーション*/
+  background: linear-gradient(to bottom, whitesmoke 0%, #dadada 100%);/*グラデーション*/
+  text-shadow: 1px 1px 1px whitesmoke;/*文字を立体的に*/
+  color: black;
+}
+aside>ol li:before, aside>ul li:before{ 
+  font-family: "Font Awesome 5 Free";
+  content: "\f138";
+  position: absolute;
+  left : 0.5em; /*左端からのアイコンまでの距離*/
+  color: orange; /*アイコン色*/
+}
+
+h1 {
+  color: #364e96;/*文字色*/
+  border: solid 3px #364e96;/*線色*/
+  padding: 0.5em;/*文字周りの余白*/
+  border-radius: 0.5em;/*角丸*/
+}
+textarea{
+  min-height: 500px;
+  margin: 10px
+}
+p{
+  margin: 10px;
+}
+img.image-edge{
+  border: 4px solid royalblue;
+  border-radius: 10px;
+  padding : 10px;
+  size-adjust: 20%;
+}
+div.description > ol, div.description > ul {
+  padding: 0;
+  position: relative;
+}
+div.description > ol li, div.description > ul li{
+  color: black;
+  border-left: solid 8px orange;/*左側の線*/
+  background: whitesmoke;/*背景色*/
+  margin-bottom: 5px;/*下のバーとの余白*/
+  line-height: 1.5;
+  border-radius: 0 15px 15px 0;/*右側の角だけ丸く*/
+  padding: 0.5em;
+  list-style-type: none!important;
+}
+.cell{
+  max-width: 600px;
+  margin: 10px;
+  padding: 5px;
+  border: 1px solid black;
+}
+footer{
+  margin: 0 auto;
+  background-color:cadetblue;
+}

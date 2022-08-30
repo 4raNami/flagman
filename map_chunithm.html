@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <script>
+      const SUB = 700;                          //どれくらい前から出現させるか
+      const OD = 7;                             //判定の厳しさ
+      const movex1 = [272,302.5,335,366.5];     //叩く前の出現位置X軸　以降左から順番
+      const movey1 = 64;                        //叩く前の出現位置y軸
+      const movex2 = [169,270,370,470];         //叩くタイミングの位置x軸
+      const movey2 = 378;                       //叩くタイミングの位置y軸
+      const movex3 = [movex2[0]*2-movex1[0],
+                      movex2[1]*2-movex1[1],
+                      movex2[2]*2-movex1[2],
+                      movex2[3]*2-movex1[3]];   //叩いた後の位置x軸
+      const movey3 = movey2*2-movey1;           //叩いた後の位置y軸
+      const missX = [198,279,360,441];
+      const perfect = 16;
+      const great = [64,61,58,55,52,49,46,43,40,37,34];
+      const bad = [151,148,145,142,139,136,133,130,127,124,121];
+      let IN;
+      let OUT;
+      let row;
+      const TriggerName = ["HitSoundSoftWhistle","HitSoundNormalWhistle","HitSoundNormalFinish","HitSoundNormalClap"];
+      function Position(position,point){
+        let code = "";
+        const PU = Math.floor(point) + SUB;//Point Up
+        const pd = Math.floor(point) - SUB;//point down
+        const D = pd + 215;
+        const nta = Math.floor(point) + great[OD] + 1;//notes's trigger after
+        const ntb = Math.floor(point) - great[OD] - 1;//notes's trigger before
+        const mta = Math.floor(point) + bad[OD] + 1;  // misses trigger after
+        const mtb = Math.floor(point) - bad[OD] - 1;  // misses trigger before
+        const mtaa = mta + 100;
+        if((position+1) % 1 == 0 && position >= 0 && position <= 3){
+          code = 'Sprite,Overlay,Centre,"notes.png",320,240'+'\n'+
+          ' F,0,'+ pd+ ',,0'+'\n'+ 
+          ' F,0,'+ D + ',,1'+'\n'+
+          ' M,2,'+ pd + ',' + point +',' + movex1[position] + ',' + movey1 + ',' + movex2[position] + ',' + movey2 +'\n'+
+          ' S,2,' + pd + ',' + point + ',0.065,0.2'+'\n'+
+          ' M,1,' + point + ',' + PU + ',' + movex2[position] + ',' + movey2 + ',' + movex3[position] + ',' + movey3 + '\n'+
+          ' S,1,' + point + ',' + PU + ',0.2,0.3'+'\n'+
+          ' T,' + TriggerName[position] + ',' + ntb + ',' + nta +'\n'+
+          '  F,0,0,,0'+'\n'+
+          'Sprite,Overlay,Centre,"miss.png",' + missX[position] + ',240'+'\n'+
+          ' F,0,' + point + ',,0'+'\n'+
+          ' S,0,' + point + ',,1.2'+'\n'+
+          ' MY,0,' + mta + ',' + mtaa + ',306,256'+'\n'+
+          ' F,2,' + mta + ',' + mtaa + ',1,0'+'\n'+
+          ' T,' + TriggerName[position] + ',' + mtb + ',' + mta +'\n'+
+          '  S,0,0,272,0'+'\n';
+        }else{
+          return "ERRER";
+        }
+        return code;
+      }
+      function chunithm(){
+        IN = document.getElementById("input");
+        OUT = document.getElementById("output");
+        OUT.value="";
+        row = IN.value.split('\n');
+        var pt = "";
+        row.forEach(value => {
+          let ele = value.split(/,|:/);
+          var position = (parseInt(ele[0])-64)/128; // 0 ~ 3
+          pt += Position(position,ele[2]);
+        });
+        OUT.value = pt;
+      }
+    </script>
+  </head>
+  <body>
+    <textarea id="input" style="width:200px;height:auto"></textarea><br>
+    <textarea id="output" style="width:360px;height:auto"></textarea><br>
+    <input type="button" onclick="chunithm()" value="作成">
+  </body>
+</html>

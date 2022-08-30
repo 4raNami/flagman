@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <script>
+      const SUB = 700;                          //どれくらい前から出現させるか
+      let IN;
+      let OUT;
+      let row;
+      function Position(position,point){
+        let prev = point - SUB;
+        let fade = prev + 50;
+        let code = "";
+        const NAME = ["","1","2","3"];
+        const movex1 = [267,299,332,365];
+        const movex2 = [57,230,402,574];
+        if((position+1) % 1 == 0 && position >= 0 && position <= 3){
+          code = 'Sprite,Overlay,Centre,"arcaeanotes' + NAME[position] + '.png",320,240' + '\n'+
+          ' M,2,' + prev + ',' + point + ',' + movex1[position] + ',20,' + movex2[position] + ',435' + '\n'+
+          //' F,0,'+ prev +',196625,1' + '\n' +
+          //' F,0,196625,,0'+ '\n' +
+          ' F,0,' + prev + ',' + fade + ',0'+'\n'+
+          ' F,0,' + fade + ',' + point + ',1'+'\n'+
+          ' S,2,' + prev + ',' + point + ',0.19,1.1' + '\n';
+        }else{
+          return "ERRER";
+        }
+        return code;
+      }
+      function arcaea(){
+        IN = document.getElementById("input");
+        OUT = document.getElementById("output");
+        OUT.value="";
+        row = IN.value.split('\n');
+        var pt = "";
+        row.forEach(value => {
+          let ele = value.split(/,|:/);
+          var position = (parseInt(ele[0])-64)/128; // 0 ~ 3
+          var point = parseInt(ele[2]);
+          pt += Position(position,point);
+        });
+        OUT.value = pt;
+      }
+    </script>
+  </head>
+  <body>
+    <textarea id="input" style="width:200px;height:auto"></textarea><br>
+    <textarea id="output" style="width:360px;height:auto"></textarea><br>
+    <input type="button" onclick="arcaea()" value="作成">
+  </body>
+</html>

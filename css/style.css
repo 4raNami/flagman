@@ -183,7 +183,7 @@ footer{
   left: 0;
   right: 0;
   margin: auto;
-  position: absolute;
+  position: fixed;
   transform: rotate(-45deg);
 }
 .gotop:hover{

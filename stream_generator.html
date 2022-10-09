@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript" src="js/stream_generator.js"></script>
+    <title>ストリームマップ生成機</title>
+  </head>
+  <body>
+    <header>
+      <a href="./index.html"><img width="200" height="84" src="img/logo.svg"></a>
+      <script src="js/nav.js"></script>
+    </header>
+    <div class="flex-container">
+      <script src="js/aside.js"></script>
+      <main>
+        <h1>ストリームマップ生成機</h1>
+        <span style="padding-right:55px">BPM:</span><input id="bpm" type="text" value="220"><br>
+        <span style="padding-right:1px">First-Offset:</span><input id="offset" type="text" value="1130"><br>
+        <textarea id="input" style="width:200px;height:500px"></textarea>
+        <textarea id="output" style="width:200px;height:500px"></textarea><br>
+        <input type="button" onclick="change()" value="作成">
+        <script>
+          const BPM = document.getElementById("bpm");
+        </script>
+      </main>
+  </body>
+</html>

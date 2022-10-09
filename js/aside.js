@@ -9,5 +9,7 @@ aside.insertAdjacentHTML('afterbegin', `<aside>
     <li><a href="map5.html">timing point setting</a></li>
     <li><a href="map6.html">mapping 判定</a></li>
     <li><a href="map.html">mapping 完成統合版 ver1.0</a></li>
+    <li><a href="map_generator.html">マップ自動生成機(beta)</a></li>
+    <li><a href="stream_generator.html">ストリームマップ生成機</a></li>
   </ol>
 </aside>`);

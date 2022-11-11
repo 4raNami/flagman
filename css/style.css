@@ -1,10 +1,6 @@
-html{
-  position: absolute;
-  min-width: 98%;
-}
 body{
   background-color:azure;
-  min-width: 98%;
+  width: 98vw;
 }
 header{
   display: flex;
@@ -56,7 +52,7 @@ aside> ol li,aside> ul li {
 }
 aside>ol li:before, aside>ul li:before{ 
   font-family: "Font Awesome 5 Free";
-  content: "\f138";
+  content: ">";
   position: absolute;
   left : 0.5em; /*左端からのアイコンまでの距離*/
   color: orange; /*アイコン色*/
@@ -123,6 +119,13 @@ img.image-edge{
   border-radius: 10px;
   padding : 10px;
   size-adjust: 20%;
+}
+div.shell{
+  margin: 5px;
+  padding: 10px;
+  border: 4px solid greenyellow;
+  border-radius: 1em;
+  background-color:bisque;
 }
 div.description > ol, div.description > ul {
   padding: 0;

@@ -1,9 +1,63 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
+    <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
     <script type="text/javascript" src="js/stream_generator.js"></script>
     <title>ストリームマップ生成機</title>
+    <style>
+      *{
+        margin: 0 auto;
+      }
+      #contents{
+        display: flex;
+        flex-wrap: nowrap;
+        overflow: scroll;
+      }
+      div#contents>[class^=shell]{
+        position: relative;
+        height: 500px;
+        width: 500px;
+        border: 2px black solid;
+        padding: 5px;
+        text-align: center;
+        width: 300px;
+        margin: 15px;
+      }
+  </style>
+  <script>
+    var x = 0;
+    function add(){
+      x++;
+      document.getElementById("contents").innerHTML += 
+      `<div class="shell${x}">
+        <p style="position:absolute">No.${x}</p>
+        <p>どこから</p>
+        <p>どこまで</p>
+        <p>notes数</p><br>
+        <input name="queue${x}" type="radio" value="10000000">10000000 <br>
+        <input name="queue${x}" type="radio" value="10001000">10001000 <br>
+        <input name="queue${x}" type="radio" value="20001000">20001000 <br>
+        <input name="queue${x}" type="radio" value="10101010">10101010 <br>
+        <input name="queue${x}" type="radio" value="20102010">20102010 <br>
+        <input name="queue${x}" type="radio" value="21112111">21112111 <br>
+        <input name="queue${x}" type="radio" value="21212121">21212121 <br>
+        <input name="queue${x}" type="radio" value="31112111">31112111 <br>
+        <input name="queue${x}" type="radio" value="31113111">31113111 <br>
+        <input name="queue${x}" type="radio" value="31213121">31213121 <br>
+        <input name="queue${x}" type="radio" value="32223222">32223222 <br>
+      </div>`;
+    }
+    function del(){
+      const element = document.querySelector(`.shell${x}`);
+      if(x > 1){
+        element.remove();
+        x--;
+      }else{
+        alert("これ以上消せません");
+      }
+    }
+  </script>
   </head>
   <body>
     <header>
@@ -14,14 +68,31 @@
       <script src="js/aside.js"></script>
       <main>
         <h1>ストリームマップ生成機</h1>
-        <span style="padding-right:55px">BPM:</span><input id="bpm" type="text" value="220"><br>
-        <span style="padding-right:1px">First-Offset:</span><input id="offset" type="text" value="1130"><br>
-        <textarea id="input" style="width:200px;height:500px"></textarea>
-        <textarea id="output" style="width:200px;height:500px"></textarea><br>
+        <div class="shell">
+          <span style="padding-right:55px">BPM:</span><input id="bpm" type="text" value="220"><br>
+          <span style="padding-right:1px">First-Offset:</span><input id="offset" type="text" value="1130"><br>
+          <span style="padding-right:44px">Snap:</span>
+          <select id="snap">
+            <option value="1.0">1/1</option>
+            <option value="2.0">1/2</option>
+            <option value="3.0">1/3</option>
+            <option value="4.0" selected>1/4</option>
+            <option value="5.0">1/5</option>
+            <option value="6.0">1/6</option>
+            <option value="7.0">1/7</option>
+            <option value="8.0">1/8</option>
+            <option value="9.0">1/9</option>
+            <option value="12.0">1/12</option>
+            <option value="16.0">1/16</option>
+          </select>
+        </div>
+        複数の入力方法<br>
+        <div id="contents"></div><script>add()</script>
+        <input type="button" onclick="add()" value="追加">
+        <input type="button" onclick="del()" value="削除">
+        <textarea id="input" style="min-width:200px;min-height:auto"></textarea><br>
+        出力結果<br><textarea id="output" style="min-width:200px;min-height:500px"></textarea>
         <input type="button" onclick="change()" value="作成">
-        <script>
-          const BPM = document.getElementById("bpm");
-        </script>
       </main>
   </body>
 </html>

@@ -1,7 +1,8 @@
-function bpm(offset,BPM,offset_count){
-  const SNAP = 4.0;
+function bpm(offset,BPM,offset_count,s){
+  console.log(BPM);
+  var snap = parseFloat(s);
   let ms = 60000.0/BPM;
-  answer = Math.floor((ms/SNAP*offset_count + offset)); // 1124の位置に1125のノーツの場合-0.1->-0.2 11
+  answer = Math.floor((ms/snap*offset_count + offset)); // 1124の位置に1125のノーツの場合-0.1->-0.2 11
   return answer;
 }
 function random(value,prev){ // value = 1 ~ 4
@@ -27,7 +28,9 @@ function random(value,prev){ // value = 1 ~ 4
 function change(){
   let IN = document.getElementById("input");
   let OUT = document.getElementById("output");
-  const first_offset = document.getElementById("offset"); // 入力offset
+  const first_offset = parseFloat(document.getElementById("offset").value); // 入力offset
+  const SNAP = document.getElementById("snap").value;
+  const BPM = document.getElementById("bpm").value;
   let offset_count = 0; // 内部カウンター
   const position = [64,192,320,448];
   let row; // 配列 0 0 0 1 0 0 0 1
@@ -37,7 +40,7 @@ function change(){
   // if(IN.value == "") IN.value = flagman();  <=後から追加した自動flagman用作譜
   row = IN.value.split(''); // 1文字ずつ配列に格納する
   row.forEach(value => {
-    let offset = bpm(parseFloat(first_offset.value),BPM.value,offset_count); //bpm(入力offset,入力BPM,内部カウンター)
+    let offset = bpm(first_offset,BPM,offset_count,SNAP); //bpm(入力offset,入力BPM,内部カウンター,snap数)
     if(value >= 1 && value <= 4){ // 0が入力されたら飛ばす
       let point = random(value,prev); // pointは配列[0,2,3]とか
       point.forEach(E => {

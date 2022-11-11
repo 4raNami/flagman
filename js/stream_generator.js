@@ -1,5 +1,35 @@
+let IN;
+let OUT;
+let first_offset;
+let snap;
+let BPM;
+let offset_count;
+const position = [64,192,320,448];
+let row;
+let prev;
+let str = "";
+function test(value){
+  if(value === "all"){
+    console.log(`
+    IN = ${IN.value}
+    OUT = ${OUT.value}
+    first_offset = ${first_offset}
+    snap = ${snap}
+    BPM = ${BPM}
+    offset_count = ${offset_count}
+    position = ${position}
+    row = ${row}
+    prev = ${prev}
+    str = ${str}`);
+  }
+  else if(value === "str"){
+    console.log(str);
+  }
+  else{
+    console.log("order is not found :p");
+  }
+}
 function bpm(offset,BPM,offset_count,s){
-  console.log(BPM);
   var snap = parseFloat(s);
   let ms = 60000.0/BPM;
   answer = Math.floor((ms/snap*offset_count + offset)); // 1124の位置に1125のノーツの場合-0.1->-0.2 11
@@ -25,22 +55,28 @@ function random(value,prev){ // value = 1 ~ 4
   }
   return array;
 }
-function change(){
-  let IN = document.getElementById("input");
-  let OUT = document.getElementById("output");
-  const first_offset = parseFloat(document.getElementById("offset").value); // 入力offset
-  const SNAP = document.getElementById("snap").value;
-  const BPM = document.getElementById("bpm").value;
-  let offset_count = 0; // 内部カウンター
-  const position = [64,192,320,448];
-  let row; // 配列 0 0 0 1 0 0 0 1
-  let prev = [0, 1]; // 前のpoint(配列)を格納する
-  let str = ""; // 一時保存
+function init(){
+  IN = document.getElementById("input");
+  OUT = document.getElementById("output");
+  first_offset = parseFloat(document.getElementById("offset").value); // 入力offset
+  snap = document.getElementById("snap").value;
+  BPM = document.getElementById("bpm").value;
+  offset_count = 0; // 内部カウンター
+  row; // 配列 0 0 0 1 0 0 0 1
+  prev = [0, 1]; // 前のpoint(配列)を格納する
+  str = ""; // 一時保存
   OUT.value="";
   // if(IN.value == "") IN.value = flagman();  <=後から追加した自動flagman用作譜
   row = IN.value.split(''); // 1文字ずつ配列に格納する
+}
+function serect(){
+  init();
+  test("str");
+}
+function change(){
+  init();
   row.forEach(value => {
-    let offset = bpm(first_offset,BPM,offset_count,SNAP); //bpm(入力offset,入力BPM,内部カウンター,snap数)
+    let offset = bpm(first_offset,BPM,offset_count,snap); //bpm(入力offset,入力BPM,内部カウンター,snap数)
     if(value >= 1 && value <= 4){ // 0が入力されたら飛ばす
       let point = random(value,prev); // pointは配列[0,2,3]とか
       point.forEach(E => {

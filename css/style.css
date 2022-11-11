@@ -1,7 +1,10 @@
+/*ページ全体*/
 body{
   background-color:azure;
   width: 98vw;
 }
+
+/*ヘッダータグ関連*/
 header{
   display: flex;
   align-items: center;
@@ -13,15 +16,19 @@ header>img{
 header>nav{
   flex-basis: 90%;
 }
+
+/*ナビバー関連*/
 nav>ol{
   display: flex;
 }
 .navi-list{
   justify-content: space-between;
 }
-li{
+nav li{
   margin:0 auto;
 }
+
+/*aside 関連*/
 div.flex-container{
   display: flex;
   justify-content: space-around;
@@ -32,6 +39,8 @@ aside{
   background-color: blanchedalmond;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
+
+/*main 関連*/
 main{
   flex-basis: 85%;
   margin-left: 20px;
@@ -147,6 +156,12 @@ div.description > ol li, div.description > ul li{
   padding: 5px;
   border: 1px solid black;
 }
+input[type=button]{
+  width: auto;
+  height: 3rem;
+  font-size: larger;
+  margin: 10px 5px;
+}
 footer{
   margin: 0 auto;
   font-size: large;
@@ -155,7 +170,6 @@ footer{
   line-height: 2.5em;
   background-color:cadetblue;
 }
-
 .gotop{
   display: block;
   width: 60px;

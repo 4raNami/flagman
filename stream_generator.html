@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
     <script type="text/javascript" src="js/stream_generator.js"></script>
+    <script src="https://kit.fontawesome.com/eea364082e.js" crossorigin="anonymous"></script>
     <title>ストリームマップ生成機</title>
     <style>
       *{
@@ -11,18 +12,54 @@
       }
       #contents{
         display: flex;
-        flex-wrap: nowrap;
-        overflow: scroll;
+        flex-wrap: wrap;
+        /* overflow: scroll; */
+        background-color: antiquewhite;
+        border: 2px solid black;
+        border-radius: 20px;
       }
       div#contents>[class^=shell]{
         position: relative;
-        height: 500px;
-        width: 500px;
+        height: auto;
+        width: 10em;
+        background-color: cornsilk;
         border: 2px black solid;
+        border-radius: 10px;
         padding: 5px;
         text-align: center;
-        width: 300px;
         margin: 15px;
+      }
+      /* Firefox用 */
+      details summary{
+        list-style: none;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+      /* Chrome, Safari用 */
+      details summary::-webkit-details-marker {
+        display: none; /* デフォルト矢印削除 */
+        
+      }
+      
+      /* 閉じている時はFont Awesomeのプラスアイコン使用 */
+      details summary::before {
+        font-family: FontAwesome;
+        content: '\f067';
+        margin-right: 10px;
+        color: red;
+      }
+      
+      /* 開いている時はFont Awesomeのマイナスアイコン使用 */
+      details[open] summary::before {
+        content: '\f068';
+      }
+      details summary:before{
+        font-family: "Font Awesome 5 Free";
+        content: '\f067';
+        font-weight: 900;
+      }
+      details details{
+        text-indent: 1em; 
       }
   </style>
   <script>
@@ -86,13 +123,23 @@
             <option value="16.0">1/16</option>
           </select>
         </div>
-        複数の入力方法<br>
-        <div id="contents"></div><script>add()</script>
-        <input type="button" onclick="add()" value="追加">
-        <input type="button" onclick="del()" value="削除">
-        <textarea id="input" style="min-width:200px;min-height:auto"></textarea><br>
+        <details>
+          <summary>複数の入力方法</summary>
+          <details>
+            <summary>ラジオボタンタイプ</summary>
+            <input type="button" onclick="add()" value="追加">
+            <input type="button" onclick="del()" value="削除">
+            <input type="button" onclick="serect()" value="作成">
+            <div id="contents"></div><script>add()</script>
+          </details>
+        </details>
+        <details open>
+          <summary>高度な設定（手入力）</summary><textarea id="input" style="min-width:200px;min-height:auto"></textarea><br>
+          <input type="button" onclick="change()" value="作成"><br>
+        </details>
+        <br>
         出力結果<br><textarea id="output" style="min-width:200px;min-height:500px"></textarea>
-        <input type="button" onclick="change()" value="作成">
       </main>
+    </div>
   </body>
 </html>

@@ -1,7 +1,11 @@
 /*ページ全体*/
 body{
   background-color:azure;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 500;
   width: 98vw;
+  letter-spacing: 2px;
+  line-height: 1.5em;
 }
 
 /*ヘッダータグ関連*/
@@ -39,13 +43,6 @@ aside{
   background-color: blanchedalmond;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
-
-/*main 関連*/
-main{
-  flex-basis: 85%;
-  margin-left: 20px;
-  margin-bottom: 20px;
-}
 aside>ul,aside>ol {
   padding: 0;
   position: relative;
@@ -67,6 +64,15 @@ aside>ol li:before, aside>ul li:before{
   color: orange; /*アイコン色*/
 }
 
+/*main 関連*/
+main, main>*{
+  flex-basis: 85%;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/*全般*/
 h1 {
   color: #364e96;/*文字色*/
   border: solid 3px #364e96;/*線色*/
@@ -115,10 +121,13 @@ h3:before {
   border-radius: 50%;
   background: #fff;
 }
-
 textarea{
   min-height: 500px;
   margin: 10px
+}
+fieldset{
+  margin:0 auto;
+  padding: 0;
 }
 p{
   margin: 10px;
@@ -152,7 +161,7 @@ div.description > ol li, div.description > ul li{
 }
 .cell{
   max-width: 600px;
-  margin: 10px;
+  margin: 0px auto;
   padding: 5px;
   border: 1px solid black;
 }
@@ -162,47 +171,76 @@ input[type=button]{
   font-size: larger;
   margin: 10px 5px;
 }
+
+/*footer関連*/
 footer{
-  margin: 0 auto;
+  padding: 10px 0;
+  text-align: center;
   font-size: large;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   padding-left: 24px;
-  line-height: 2.5em;
   background-color:cadetblue;
 }
-.gotop{
-  display: block;
-  width: 60px;
-  height: 60px;
-  box-sizing: border-box;
-  background: #FFF;
-  border: 1px solid #999;
-  padding-top: 30px;
+
+/*stream generator用css*/
+#contents{
+  display: flex;
+  flex-wrap: wrap;
+  /* overflow: scroll; */
+  background-color: antiquewhite;
+  border: 2px solid black;
+  border-radius: 20px;
+}
+div#contents>[class^=shell]{
+  position: relative;
+  height: auto;
+  width: 15em;
+  background-color: cornsilk;
+  border: 2px black solid;
+  border-radius: 10px;
+  padding: 5px;
   text-align: center;
-  letter-spacing: -1px;
-  font-size: 85%;
-  text-decoration: none;
-  color: #333;
-  opacity: 0.5;
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 10000;
+  margin: 15px;
 }
-.gotop::before{
-  content: "";
+/* Firefox用 */
+details summary{
+  list-style: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
+/* Chrome, Safari用 */
+details summary::-webkit-details-marker {
+  display: none; /* デフォルト矢印削除 */
+}
+
+/* 閉じている時はFont Awesomeのプラスアイコン使用 */
+details summary::before {
+  font-family: FontAwesome;
+  content: '\f067';
+  margin-right: 10px;
+  color: red;
+}
+
+/* 開いている時はFont Awesomeのマイナスアイコン使用 */
+details[open] summary::before {
+  content: '\f068';
+}
+details summary:before{
+  font-family: "Font Awesome 5 Free";
+  content: '\f067';
+  font-weight: 900;
+}
+div.caution{
+  color:red;
+}
+input[type="number"]{
+  width: 64px;
+}
+.error {
+  display: none; 
+}
+input:invalid + .error {
   display: block;
-  border-top: 2px solid #333;
-  border-right: 2px solid #333;
-  width: 25%;
-  height: 25%;
-  top: 25%;
-  left: 0;
-  right: 0;
-  margin: auto;
-  position: fixed;
-  transform: rotate(-45deg);
-}
-.gotop:hover{
-  opacity: 1;
+  color: red;
+  font-size: 0.9em;
 }

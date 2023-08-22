@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/svEditor.js"></script>
+  </head>
+  <header>
+    <a href="./index.html"><img width="200" height="84" src="img/logo.svg"></a>
+    <script src="js/nav.js"></script>
+  </header>
+  <div class="flex-container">
+    <script src="js/aside.js"></script>
+    <main>
+      <h1>Slider Velocityの編集ページ</h1>
+      <fieldset>
+        <legend>OFFSETとBPMを設定する</legend>
+        <p>開始OFFSET:<input type="number" value="0" id="sOffset"> → 終了OFFSET:<input type="number" value="10" id="fOffset"></p>
+        <p>開始BPM:<input type="number" value="120" id="sBpm"> → 終了BPM:<input type="number" value="150" id="fBpm"></p>
+        <input type="button" onclick="create()" value="作成">
+      </fieldset>
+      <div>
+        <textarea id="output" style="width:360px;height:auto" value="textarea"></textarea>
+      </div>
+    </main>
+  </div>
+</html>

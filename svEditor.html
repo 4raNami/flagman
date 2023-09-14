@@ -5,6 +5,17 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="js/svEditor.js"></script>
+    <style>
+      .bpmMode{
+        display: none;
+      }
+      .speedMode{
+        display: none;
+      }
+      .show{
+        display: block !important;
+      }
+    </style>
   </head>
   <header>
     <a href="./index.html"><img width="200" height="84" src="img/logo.svg"></a>
@@ -17,7 +28,10 @@
       <fieldset>
         <legend>OFFSETとBPMを設定する</legend>
         <p>開始OFFSET:<input type="number" value="0" id="sOffset"> → 終了OFFSET:<input type="number" value="10" id="fOffset"></p>
-        <p>開始BPM:<input type="number" value="120" id="sBpm"> → 終了BPM:<input type="number" value="150" id="fBpm"></p>
+        <p class="bpmMode show">開始BPM:<input type="number" value="120" id="sBpm"> → 終了BPM:<input type="number" value="150" id="fBpm"></p>
+        <p class="speedMode">開始速度:<input type="number" value="0.75" id="sSpe" step="0.05"> → 終了速度:<input type="number" value="1.25" id="fSpe" step="0.05"></p>
+        <p><input type="radio" id="bpm" name="mode" value="bpm" checked><label for="bpm">BPM設定モード</label>
+        <input type="radio" id="speed" name="mode" value="speed"><label for="speed">速度設定モード</label></p>
         <input type="button" onclick="create()" value="作成">
       </fieldset>
       <div>
